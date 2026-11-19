@@ -207,11 +207,10 @@ Dialog-KoELECTRA-Small + PEFT·LoRA 분류
 
 ## Demo
 
-실제 서비스 시연 영상 또는 공개 가능한 음성 샘플 링크를 추가할 영역입니다.
+화면과 영상은 맨 위 [데모](#데모) 섹션에도 있습니다.
 
-- 배포 서비스: [voice-guard-project.netlify.app](https://voice-guard-project.netlify.app/)
-- 백엔드 API 문서: [proj1-e-production.up.railway.app/docs](https://proj1-e-production.up.railway.app/docs)
-- 짧은 사용 영상: [보이스가드 서비스 데모 영상](docs/demo/voiceguard_demo.mp4)
+- 프론트엔드: [voice-guard-project.netlify.app](https://voice-guard-project.netlify.app/) (화면만 열리고, 백엔드가 내려가 있어 분석은 동작하지 않습니다)
+- 시연 영상: [서비스 화면만 담은 무음 버전](docs/demo/voiceguard_demo.mp4)
 - 음성 샘플: 원본 음성·전사문에 개인정보가 포함되지 않고 이용·공개 조건을 확인한 경우에만 추가
 
 ---
@@ -286,7 +285,7 @@ STT 개선용 정제 데이터에는 다음 처리를 적용했습니다.
 | Audio Preprocessing | FFmpeg · librosa · torchaudio             | 음성 형식·샘플링·길이·음량 처리          |
 | STT                 | Faster-Whisper (Whisper-small 계열)       | 한국어 통화 음성 전사 및 타임스탬프 생성 |
 | TTS                 | 사용하지 않음                             | MVP 범위 외                             |
-| Text Classification | Dialog-KoELECTRA-Small ONNX INT8         | 청크별 정상/보이스피싱 위험 점수 산출    |
+| Text Classification | Dialog-KoELECTRA-Small (PyTorch)         | 청크별 정상/보이스피싱 위험 점수 산출    |
 | Evidence Search     | 청크 점수 기반 상위 구간 선정              | 보이스피싱 의심 시 점수가 높은 상위 3개 구간 제공 |
 | Production UI       | Nuxt.js                                  | 음성 파일 업로드, 분석 상태 및 결과 표시       |
 
@@ -387,6 +386,10 @@ Nuxt.js 결과 화면
 2. **시험과 코드의 기대값 불일치**: `tests/analysis/test_domain_corrector.py` 3건이 실패합니다. 교정 종류 기본값(`typo`와 `spacing`), 조사 처리("보이스피싱가"), 문맥 없는 후보 오탈자 교정 여부가 시험의 기대와 현재 코드 동작에서 다릅니다.
 
 원본에는 시험을 자동 실행하는 CI가 없어(비밀 검사 워크플로만 있음) 이 불일치가 드러나지 않았습니다.
+
+## 사례 연구
+
+- [ONNX INT8 분류기를 도입했다가 점수 포화로 PyTorch로 되돌린 일](docs/case-studies/onnx-int8-rollback.md): 결정은 임시 롤백이고 원인은 확정하지 못했습니다. 비교 결과 기록이 없다는 점까지 적었습니다.
 
 ## Validation
 
@@ -507,8 +510,8 @@ Nuxt.js 결과 화면
 ### 로컬 실행 방법
 
 ```powershell
-git clone https://github.com/aihuman-7th/proj1-e.git
-cd proj1-e
+git clone https://github.com/SJeongHyeon/voiceguard.git
+cd voiceguard
 
 # 백엔드 가상환경 및 의존성 설치
 python -m venv .venv
