@@ -371,6 +371,23 @@ Nuxt.js 결과 화면
 
 ---
 
+## 시험 상태
+
+2026-11-19에 이 사본에서 API 키 없이, 모델 내려받기를 막은 오프라인 모드(`HF_HUB_OFFLINE=1`)로 실행했습니다(Python 3.11, `requirements-backend.txt`, `python -m pytest tests -q`). 아래 결과는 원본 저장소(`aihuman-7th/proj1-e`) 같은 커밋에서도 똑같이 나옵니다.
+
+| 결과 | 내용 |
+| --- | --- |
+| **146 passed** | API·작업 관리·요청 제어·분석 파이프라인·분류 연동 등의 시험 |
+| 4 failed | 아래 두 가지 원인 |
+| 수집 오류 2개 파일 | `tests/test_whisper_lora_data.py`, `tests/test_whisper_lora_training.py`는 가져오는 단계에서 실패해 제외하고 실행 |
+
+실패 원인(미해결, 팀원이 작성한 코드와 시험은 의도를 모른 채 고치지 않고 그대로 두었습니다):
+
+1. **원본에 커밋되지 않은 파일**: `tools/transcript_cleaning.py`는 원본 저장소 이력 어디에도 없어 Whisper LoRA 학습 도구 시험 2개 파일이 실행되지 않습니다. `tests/test_whisper_lora_notebooks.py`도 노트북 3개를 기대하지만 저장소에는 1개만 있습니다.
+2. **시험과 코드의 기대값 불일치**: `tests/analysis/test_domain_corrector.py` 3건이 실패합니다. 교정 종류 기본값(`typo`와 `spacing`), 조사 처리("보이스피싱가"), 문맥 없는 후보 오탈자 교정 여부가 시험의 기대와 현재 코드 동작에서 다릅니다.
+
+원본에는 시험을 자동 실행하는 CI가 없어(비밀 검사 워크플로만 있음) 이 불일치가 드러나지 않았습니다.
+
 ## Validation
 
 | Evaluation         | Criteria                                                          |
