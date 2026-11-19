@@ -1,0 +1,6 @@
+model: small
+language: ko
+vad_filter: true
+word_timestamps: false
+device: cpu
+compute_type: int8

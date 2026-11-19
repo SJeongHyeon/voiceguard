@@ -1,0 +1,19 @@
+# CPU STT runtime
+faster-whisper
+
+# Whisper LoRA fine-tuning and evaluation
+transformers==4.44.2
+torch==2.4.1
+datasets
+peft
+accelerate
+evaluate
+jiwer
+PyYAML
+soundfile
+
+# Jupyter/VS Code Notebook runtime
+ipykernel>=6.29
+jupyterlab>=4.2,<5
+
+onnxruntime
