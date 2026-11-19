@@ -4,14 +4,14 @@
 >
 > **공개용 사본:** AI Human 7기 1차 팀 프로젝트(E조)의 공개용 사본입니다. 원본은 비공개 저장소 `aihuman-7th/proj1-e`(기준 커밋 `cf431ef`, 2026-08-28)이며 커밋 이력은 가져오지 않았습니다. 서정현의 담당 범위와 기여는 CONTRIBUTIONS.md에 있습니다.
 >
-> **배포 상태(2026-11-19 확인):** 프론트엔드 [voice-guard-project.netlify.app](https://voice-guard-project.netlify.app/)은 열리지만(200), 백엔드(Railway)는 `Application not found`(404)로 **내려가 있어 분석 기능은 동작하지 않습니다.** 동작은 [시연 영상](docs/demo/voiceguard_demo.mp4)이나 로컬 실행으로 확인하세요.
+> **배포 상태(2026-11-19 확인):** 프론트엔드 [voice-guard-project.netlify.app](https://voice-guard-project.netlify.app/)은 열리지만(200), 백엔드(Railway)는 `Application not found`(404)로 **내려가 있어 분석 기능은 동작하지 않습니다.** 동작은 [시연 영상](docs/demo/voiceguard_demo.mp4), [원본 녹화](https://drive.google.com/file/d/1u3DY856VDEZkHz8jf1ajQzmT7vNgpgHn/view?usp=sharing)나 로컬 실행으로 확인하세요.
 
 ## 데모
 
 [![보이스가드 데모 미리보기(76초). 클릭하면 전체 영상](docs/demo/voiceguard_demo_preview.gif)](docs/demo/voiceguard_demo.mp4)
 
 - **영상**(2분 52초, 소리 없음): [`docs/demo/voiceguard_demo.mp4`](docs/demo/voiceguard_demo.mp4). 통화 녹음 파일을 올리고, 분석이 여섯 단계(음성 전처리 → Whisper STT 전사 → 텍스트 정규화·청킹 → 위험도 분류 → 위험 구간 탐색 → 대응 안내)로 진행되는 모습과 위험도·위험 구간·즉시 행동 안내가 담긴 결과 화면을 보여 줍니다. 결과 화면의 문장은 업로드한 음성 파일의 전사입니다.
-- 원본 시연 영상에는 녹화한 PC의 브라우저 북마크·작업표시줄과 통화 음원 재생 소리가 함께 담겨 있어, 서비스 화면 영역만 잘라내고 소리를 뺀 버전을 올렸습니다.
+- **원본 녹화**(소리 포함, 서정현이 직접 녹화): [보이스 피싱 사례 분석.mp4 (Google Drive)](https://drive.google.com/file/d/1u3DY856VDEZkHz8jf1ajQzmT7vNgpgHn/view?usp=sharing). 저장소의 영상은 원본에서 서비스 화면만 잘라내고 소리를 뺀 가벼운 버전(0.9MB)이며, Drive 링크가 닫혀도 볼 수 있도록 함께 두었습니다.
 - 이 영상은 당시 배포 환경에서 녹화한 것이며 현재는 백엔드가 내려가 있어 같은 동작을 웹에서 다시 볼 수 없습니다.
 
 ## 팀 정보
